@@ -1,0 +1,45 @@
+// Place all the styles related to the resume controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.summary, .skills {
+	> .title {
+		display: inline-block;
+		width:6em;
+	}
+}
+.title {
+	font-weight:bold;
+}
+.heading .name {
+	font-weight:bold;
+	font-size:2em;
+}
+.experience {
+	.header {
+		> span {
+			padding-right:0.5em;
+		}
+
+		> .dates {
+			font-weight:bold;
+		}
+
+		> .title,
+		> .company {
+			font-style:italic;
+		}
+	}
+	> .entry {
+		padding-left:1.5em
+	}
+}
+
+.education {
+	.entry {
+		padding-left: 1.5em;
+		.name {
+			font-style: italic;
+		}
+	}
+}
