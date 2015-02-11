@@ -4,7 +4,7 @@ class ResumeController < ApplicationController
 	OUTFILE = Rails.public_path.join("resume.html")
 
 	def index
-		@title = "- Resume"
+		@title = "- R&eacute;sum&eacute;"
 # setup template data
 		if !File.exists?(OUTFILE) || File.mtime(JSONFILE) > File.mtime(OUTFILE) || 
 				File.mtime(TEMPLFILE) > File.mtime(OUTFILE)
