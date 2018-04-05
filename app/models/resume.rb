@@ -1,4 +1,8 @@
 class Resume
+  def self.json_file_location
+    return Rails.public_path.join("resume.json")
+  end
+  
 	attr_accessor :data
 
   def initialize(parser)

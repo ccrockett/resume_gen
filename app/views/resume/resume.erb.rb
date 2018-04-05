@@ -1,6 +1,6 @@
 <div class="heading">
 	<br>
-	<% ['name', 'address1', 'phone', 'email','website'].each do |entry| %>
+	<% ['name', 'email','website'].each do |entry| %>
 		<% unless @data[entry].nil? %>
 			<div class="row"><div class="<%= entry %> text-center"><%= @data[entry]['desc'] %>
 				<%- unless @data[entry]['link'].nil? -%><a href="<%= @data[entry]['link'] %>"><%- end -%>
