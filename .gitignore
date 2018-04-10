@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 public/resume.html
-public/resume.json
+resume.json
 public/*.pdf
 *.rbc
 capybara-*.html

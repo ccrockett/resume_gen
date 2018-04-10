@@ -1,6 +1,6 @@
 class Resume
   def self.json_file_location
-    return Rails.public_path.join("resume.json")
+    return Rails.root.join("resume.json")
   end
   
 	attr_accessor :data
