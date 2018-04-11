@@ -18,14 +18,10 @@ class ResumePdfRender
         # .each {|var| hash[var.to_s.delete("@")] = o_resume.instance_variable_get(var) }
         # p hash
         # Another way of doing it
+        arial_font = setup_font()
         Prawn::Document.generate(path, :margin => 15) do |pdf|
-            pdf.font_families.update("Arial" => {
-                :normal => "/Library/Fonts/Arial.ttf",
-                :italic => "/Library/Fonts/Arial Italic.ttf",
-                :bold => "/Library/Fonts/Arial Bold.ttf",
-                :bold_italic => "/Library/Fonts/Arial Bold Italic.ttf"
-            })
-
+            pdf.font_families.update("Arial" => arial_font)
+            
             pdf.font "Arial"
             
             print_heading(h_resume, pdf)
@@ -116,6 +112,24 @@ class ResumePdfRender
             o_pdf.indent BULLET_POINT_INDENTION do
                 o_pdf.text "<link href='#{h_resume['link_to_condensed']}'><i>Condensed for length. See website for responsibilities</i></link>", :inline_format => true, :size => 9
             end
+        end
+    end
+
+    def setup_font
+        if File.exists?"/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"
+            return {
+                :normal => "/usr/share/fonts/truetype/msttcorefonts/Arial.ttf",
+                :italic => "/usr/share/fonts/truetype/msttcorefonts/Arial_Italic.ttf",
+                :bold => "/usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf",
+                :bold_italic => "/usr/share/fonts/truetype/msttcorefonts/Arial_Bold_Italic.ttf"
+            }
+        else
+            return {
+                :normal => "/Library/Fonts/Arial.ttf",
+                :italic => "/Library/Fonts/Arial Italic.ttf",
+                :bold => "/Library/Fonts/Arial Bold.ttf",
+                :bold_italic => "/Library/Fonts/Arial Bold Italic.ttf"
+            }
         end
     end
 end

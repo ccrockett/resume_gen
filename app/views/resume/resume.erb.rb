@@ -4,7 +4,11 @@
 		<% unless @data[entry].nil? %>
 			<div class="row"><div class="<%= entry %> text-center"><%= @data[entry]['desc'] %>
 				<%- unless @data[entry]['link'].nil? -%><a href="<%= @data[entry]['link'] %>"><%- end -%>
+				<%- if entry == 'email' -%>
+					<%= @data[entry]['value'].gsub('@', ' [at] ') %>
+				<%- else -%>
 					<%= @data[entry]['value'] %>
+				<%- end %>
 				<%- unless @data[entry]['link'].nil? -%></a><%- end -%>
 			</div></div>
 		<% end %>

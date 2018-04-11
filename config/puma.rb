@@ -60,7 +60,7 @@ shared_dir = "#{app_dir}/shared"
 port        ENV.fetch("PORT") { 3000 }
 
 # Set master PID and state locations
-unless Rails.env == "development"
+unless ENV.fetch("RAILS_ENV") == "development"
     
     pidfile "#{shared_dir}/pids/puma.pid"
     state_path "#{shared_dir}/pids/puma.state"
