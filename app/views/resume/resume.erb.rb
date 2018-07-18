@@ -16,9 +16,22 @@
 </div>
 <br>
 <div class=""><div class="summary"><span class="title"><%= @data['summary']['title'] %></span><span class="content"><%= @data['summary']['content'] %></span></div></div>
-<div class=""><div class="skills"><span class="title"><%= @data['skills']['title'] %></span><span class="content"><%= @data['skills']['content'] %></span></div></div>
 <br>
-<div class="experience"><div class="title">Professional Experience</div><br>
+<div class=""><div class="skills"><span class="title">
+<%= @data['skills']['title'] %></span><div class="content">
+<table>
+<% (0...@data['skills']['content'].length).step(3).each do |index| %>
+	<tr>
+		<td><%= @data['skills']['content'][index].join(" / ") %></td>
+		<td><%- unless @data['skills']['content'][index+1].nil? -%><%= @data['skills']['content'][index+1].join(" / ") %><%- end -%></td>
+		<td><%- unless @data['skills']['content'][index+2].nil? -%><%= @data['skills']['content'][index+2].join(" / ") %><%- end -%></td>
+	</tr>
+<% end %>
+</table>
+	</div>
+	</div></div>
+<br>
+<div class="experience"><div class="title">Professional Experience: </div><br>
 <% @data['experience'].each do |entry| %>
 <div class="entry">
 	<div class="header">
@@ -41,7 +54,7 @@
 </div>
 <% unless @data['education'].nil? %>
 	<div class="education">
-	<div class="title">Education</div>
+	<div class="title">Education:</div>
 	<% @data['education'].each do |edu| %>
 		<div class="entry"><span class="name"><%= edu['name'] %></span>, <%= edu['grad_date'] %></div>
 		<div class="entry"><%= edu['degree'] %></div>
