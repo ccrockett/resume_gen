@@ -1,5 +1,4 @@
 require 'fileutils'
-FileUtils::mkdir_p 'foo/bar'
 class OutputController < ApplicationController    
     def create(s_file_type = 'pdf')
         resume = Resume.new(JsonParser.new(Resume.json_file_location))

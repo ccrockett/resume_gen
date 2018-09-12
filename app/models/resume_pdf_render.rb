@@ -52,7 +52,8 @@ class ResumePdfRender
             (0...h_resume['skills']['content'].length).step(SKILLS_COLUMNS).each do |index|
                 pdf.text_box "#{h_resume['skills']['content'][index].join(' / ')}", :at => [10, pdf.cursor], :inline_format => true, :size => FONT_SIZE-2
                 unless h_resume['skills']['content'][index+1].nil?
-                    pdf.text_box "#{h_resume['skills']['content'][index+1].join(' / ')}", :at => [300*1, pdf.cursor], :inline_format => true, :size => FONT_SIZE-2
+                    pdf.text_box "#{h_resume['skills']['content'][index+1].join(' / ')}", :at => [300*1, pdf.cursor], 
+                        :inline_format => true, :size => FONT_SIZE-2
                 end
                 pdf.move_down SPACE_BETWEEN_SKILLS
             end
@@ -90,12 +91,12 @@ class ResumePdfRender
         ['name'].each do |entry|
             o_pdf.text "#{h_resume[entry]['desc']} #{h_resume[entry]['value']}", :align => :center, :style => :bold, :size => FONT_SIZE + 4, :leading => 5
         end
-        ['address1', 'phone', 'email','website'].each do |entry|
+        ['address1', 'phone', 'email','website', 'gitlab', 'github'].each do |entry|
             unless h_resume[entry].nil?
-                if h_resume[entry]['link'].nil? && entry != 'email'
+                if h_resume[entry]['link'].nil?
                     o_pdf.text "#{h_resume[entry]['desc']} #{h_resume[entry]['value']}", :align => :center, :size => FONT_SIZE-2
                 else
-                    link = entry == 'email' ? "mailto:#{h_resume[entry]['value']}" : h_resume[entry]['link']
+                    link = (entry == 'email') ? "mailto:#{h_resume[entry]['value']}" : h_resume[entry]['link']
                     o_pdf.text "#{h_resume[entry]['desc']} <link href='#{link}'>#{h_resume[entry]['value']}</link>", :inline_format => true, :align => :center, :size => FONT_SIZE-2
                 end
             end
